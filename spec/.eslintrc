@@ -1,0 +1,12 @@
+{
+    "extends": "../.eslintrc",
+    "plugins": [
+        "jest"
+    ],
+    "env": {
+        "jest": true
+    },
+    "rules": {
+        "no-console": "off",
+    }
+}

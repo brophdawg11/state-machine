@@ -1,0 +1,25 @@
+{
+    "root": true,
+    "extends": "airbnb-base",
+    "rules": {
+        "indent": ["error", 4],
+        "no-console": "off",
+        "no-plusplus": "off",
+        "no-underscore-dangle": "off",
+        "operator-linebreak": "off",
+        "padded-blocks": "off",
+        "valid-jsdoc": ["error", {
+            "prefer": {
+                "arg": "param",
+                "return": "return"
+            },
+            "preferType": {
+                "boolean": "Boolean",
+                "function": "Function",
+                "number": "Number",
+                "object": "Object",
+                "string": "String"
+            }
+        }]
+    }
+}
