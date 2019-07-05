@@ -5,6 +5,15 @@
   "author": "mbrophy@urbn.com",
   "license": "MIT",
   "main": "dist/state-machine.js",
+  "files": [
+    "dist/*.{js,map}",
+    "spec/*.js",
+    "src/*.js",
+    "LICENSE.md",
+    "package.json",
+    "package-lock.json",
+    "README.md"
+  ],
   "homepage": "https://github.com/urbn/state-machine#readme",
   "repository": {
     "type": "git",
