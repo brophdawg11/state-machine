@@ -1,0 +1,10 @@
+coverage/
+spec/
+.eslintignore
+.eslintrc
+.gitignore
+.huskyrc
+.npmignore
+jest.config.js
+*.sublime-*
+webpack.config.js
