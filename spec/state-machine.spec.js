@@ -65,6 +65,13 @@ describe('StateMachine', () => {
         }
     });
 
+    it('should handle synchronous transitions', async () => {
+        const machine = new StateMachine(machineConfig, 'off');
+        expect(machine.currentState).toBe('off');
+        machine.transition('turnOn');
+        expect(machine.currentState).toBe('on');
+    });
+
     it('should handle Promise-based callbacks', async () => {
         const machine = new StateMachine(machineConfig, 'off');
 
@@ -123,25 +130,39 @@ describe('StateMachine', () => {
 
     it('should allow onEnter functions to return promises', async () => {
         /* eslint-disable no-param-reassign */
-        const payload = { count: 0 };
-        machineConfig.states.initial = {
-            transitions: {
-                start: 'off',
+
+        machineConfig = {
+            states: {
+                initial: {
+                    transitions: {
+                        start: 'off',
+                    },
+                },
+                off: {
+                    transitions: {
+                        turnOn: 'on',
+                    },
+                    onEnter: (data) => {
+                        if (data) { data.count++; }
+                        // Ensure rejected onEnter functions are passed back as well
+                        return Promise.reject(data);
+                    },
+                },
+                on: {
+                    transitions: {
+                        turnOff: 'off',
+                    },
+                    onEnter: (data) => {
+                        if (data) { data.count++; }
+                        return Promise.resolve(data);
+                    },
+                },
             },
         };
 
-        machineConfig.states.on.onEnter = (data) => {
-            if (data) { data.count++; }
-            return Promise.resolve(data);
-        };
-        machineConfig.states.off.onEnter = (data) => {
-            if (data) { data.count++; }
-
-            // Ensure rejected onEnter functions are passed back as well
-            return Promise.reject(data);
-        };
-
         const machine = new StateMachine(machineConfig, 'initial');
+        const payload = { count: 0 };
+
         try {
             await machine.transition('start', payload);
             expect(true).toBe(false);
@@ -159,6 +180,41 @@ describe('StateMachine', () => {
             expect(offValue.count).toBe(3);
         }
         /* eslint-enable no-param-reassign */
+    });
+
+    it('should proxy proper async return values from onEnter', async () => {
+        const machine = new StateMachine({
+            states: {
+                off: {
+                    transitions: {
+                        start: 'starting',
+                    },
+                },
+                starting: {
+                    transitions: {
+                        started: 'on',
+                    },
+                    onEnter() {
+                        return new Promise(resolve => setTimeout(() => {
+                            machine.transition('started');
+                            resolve('done starting');
+                        }, 1000));
+                    },
+                },
+                on: {
+                    transitions: {
+                        stop: 'off',
+                    },
+                },
+            },
+        }, 'off');
+
+        expect(machine.currentState).toBe('off');
+        const promise = machine.transition('start');
+        expect(machine.currentState).toBe('starting');
+        const value = await promise;
+        expect(value).toBe('done starting');
+        expect(machine.currentState).toBe('on');
     });
 
     it('should generate a proper graphViz .dot file', () => {

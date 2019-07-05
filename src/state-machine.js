@@ -277,13 +277,11 @@ module.exports = class StateMachine {
                     .onEnter(data, state, oldState, transition);
                 // Respect promises returned by onEnter functions
                 if (retVal && isFunction(retVal.then)) {
-                    return retVal.then(
-                        () => resolve(data),
-                        err => reject(err),
-                    );
+                    return retVal.then(resolve, reject);
                 }
+                return resolve(retVal);
             }
-            return resolve(data);
+            return resolve();
         });
     }
 
