@@ -1,6 +1,7 @@
 module.exports = {
     clearMocks: true,
     collectCoverage: true,
+    collectCoverageFrom: ['src/**/*.js'],
     coverageReporters: ['html', 'text'],
     coverageThreshold: {
         global: {
@@ -10,7 +11,6 @@ module.exports = {
             statements: 95,
         },
     },
-    testEnvironment: 'node',
     silent: true,
     verbose: true,
 };

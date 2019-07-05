@@ -2,14 +2,17 @@
   "name": "@urbn/state-machine",
   "version": "0.1.0",
   "description": "A small Javascript Promise-based Finite State Machine implementation",
-  "main": "src/state-machine.js",
-  "scripts": {
-    "lint": "eslint .",
-    "test": "jest"
-  },
+  "author": "mbrophy@urbn.com",
+  "license": "MIT",
+  "main": "dist/state-machine.js",
+  "module": "src/state-machine.js",
+  "homepage": "https://github.com/urbn/state-machine#readme",
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/urbn/state-machine.git"
+  },
+  "bugs": {
+    "url": "https://github.com/urbn/state-machine/issues"
   },
   "keywords": [
     "js",
@@ -18,17 +21,19 @@
     "state",
     "machine"
   ],
-  "author": "mbrophy@urbn.com",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/urbn/state-machine/issues"
+  "scripts": {
+    "build": "webpack --mode production",
+    "build:dev": "webpack --mode development",
+    "lint": "eslint .",
+    "test": "jest"
   },
-  "homepage": "https://github.com/urbn/state-machine#readme",
   "devDependencies": {
     "eslint": "6.0.1",
     "eslint-config-airbnb-base": "13.2.0",
     "eslint-plugin-import": "2.18.0",
     "eslint-plugin-jest": "22.7.2",
-    "jest": "24.8.0"
+    "jest": "24.8.0",
+    "webpack": "4.35.2",
+    "webpack-cli": "3.3.5"
   }
 }
