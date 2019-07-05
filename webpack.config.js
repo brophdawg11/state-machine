@@ -1,14 +1,18 @@
 const path = require('path');
 
-const isProd = process.env.NODE_ENV === 'production';
+const minify = process.env.STATE_MACHINE_MINIFY === 'true';
+
 module.exports = {
-    mode: isProd ? 'production' : 'development',
-    devtool: isProd ? 'source-map' : 'inline-source-map',
+    mode: 'production',
+    devtool: minify ? 'source-map' : 'none',
     entry: './src/state-machine.js',
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'state-machine.js',
+        filename: minify ? 'state-machine.min.js' : 'state-machine.js',
         library: 'StateMachine',
         libraryTarget: 'umd',
+    },
+    optimization: {
+        ...(!minify ? { minimize: false } : {}),
     },
 };
