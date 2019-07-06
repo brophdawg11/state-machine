@@ -12,5 +12,6 @@ module.exports = {
         },
     },
     silent: true,
+    testEnvironment: process.env.JEST_TEST_ENVIRONMENT || 'jsdom',
     verbose: true,
 };

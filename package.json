@@ -6,8 +6,6 @@
   "license": "MIT",
   "main": "src/state-machine.js",
   "files": [
-    "dist/*.{js,map}",
-    "spec/*.js",
     "src/*.js",
     "LICENSE.md",
     "package.json",
@@ -31,7 +29,7 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "test": "jest"
+    "test": "jest --testEnvironment node --collectCoverage false && jest"
   },
   "devDependencies": {
     "eslint": "6.0.1",
