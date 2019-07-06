@@ -29,8 +29,9 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "publish": "npm publish --access public",
-    "test": "jest --testEnvironment node --collectCoverage false && jest"
+    "publish": "npm run validate",
+    "test": "jest --testEnvironment node --collectCoverage false && jest",
+    "validate": "npm run lint && npm run test"
   },
   "devDependencies": {
     "eslint": "6.0.1",
