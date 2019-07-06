@@ -7,6 +7,7 @@
 * [Other Libraries](#other-libraries)
 * [Diagrams](#diagrams)
 * [API Documentation](#api-documentation)
+* [Packaged Module Format](#packaged-module-format)
 
 ## Description
 
@@ -247,3 +248,10 @@ console.log(machine.currentState);
 ```
 
 
+## Packaged Module Format
+
+This library currently makes a few assumptions about the consuming client applications, however these may be removed in future versions.
+
+* You are transpiling to ES5 code as necessary for your Node/Browser versions - this library uses ES6 features such as `const`, `let`, `Object.entries`, etc.
+* You can support CommonJS modules - this library is not distributed in ESM or UMD module formats
+* You are minifying your bundled code - this library is not distributed in a minified form

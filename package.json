@@ -4,7 +4,7 @@
   "description": "A small Javascript Promise-based Finite State Machine implementation",
   "author": "mbrophy@urbn.com",
   "license": "MIT",
-  "main": "dist/state-machine.js",
+  "main": "src/state-machine.js",
   "files": [
     "dist/*.{js,map}",
     "spec/*.js",
@@ -30,7 +30,6 @@
     "machine"
   ],
   "scripts": {
-    "build": "webpack && STATE_MACHINE_MINIFY=true webpack",
     "lint": "eslint .",
     "test": "jest"
   },
@@ -40,8 +39,6 @@
     "eslint-plugin-import": "2.18.0",
     "eslint-plugin-jest": "22.7.2",
     "husky": "3.0.0",
-    "jest": "24.8.0",
-    "webpack": "4.35.2",
-    "webpack-cli": "3.3.5"
+    "jest": "24.8.0"
   }
 }
