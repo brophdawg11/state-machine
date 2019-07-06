@@ -29,6 +29,7 @@
   ],
   "scripts": {
     "lint": "eslint .",
+    "publish": "npm publish --access public",
     "test": "jest --testEnvironment node --collectCoverage false && jest"
   },
   "devDependencies": {
