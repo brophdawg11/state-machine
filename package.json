@@ -12,13 +12,13 @@
     "package-lock.json",
     "README.md"
   ],
-  "homepage": "https://github.com/urbn/state-machine#readme",
+  "homepage": "https://github.com/brophdawg11/state-machine#readme",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/urbn/state-machine.git"
+    "url": "git+ssh://git@github.com/brophdawg11/state-machine.git"
   },
   "bugs": {
-    "url": "https://github.com/urbn/state-machine/issues"
+    "url": "https://github.com/brophdawg11/state-machine/issues"
   },
   "keywords": [
     "js",
