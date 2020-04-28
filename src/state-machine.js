@@ -226,7 +226,7 @@ module.exports = class StateMachine {
      */
     static _debug(...args) {
         if (process.env.NODE_ENV !== 'production') {
-            console.debug.apply(null, ['[DEBUG] [state-machine]', ...args]);
+            console.debug.apply(console, ['[DEBUG] [state-machine]', ...args]);
         }
     }
 
@@ -239,7 +239,7 @@ module.exports = class StateMachine {
      * @returns {undefined} No return value
      */
     static _error(...args) {
-        console.error.apply(null, ['[ERROR] [state-machine]', ...args]);
+        console.error.apply(console, ['[ERROR] [state-machine]', ...args]);
     }
 
     /**
