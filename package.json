@@ -5,6 +5,7 @@
   "author": "mbrophy@urbn.com",
   "license": "MIT",
   "main": "src/state-machine.js",
+  "types": "@types/state-machine.d.ts",
   "files": [
     "src/*.js",
     "LICENSE.md",
