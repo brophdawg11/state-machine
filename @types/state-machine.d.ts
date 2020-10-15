@@ -16,10 +16,10 @@ export type MachineDefinition = {
     onEnter?: OnStateEnter
 }
 
-type OnStateEnter = (payload: any, newState: any, oldState: oldState) => void;
+type OnStateEnter = (payload: any, newState: string, oldState: string) => void;
 
 type StateCollection = {
-    [key: string]: StateDefinition
+    [name: string]: StateDefinition
 };
 
 type StateDefinition = {
@@ -28,5 +28,5 @@ type StateDefinition = {
 };
 
 type Transition = {
-    [key: string]: string
+    [name: string]: string[]
 }
