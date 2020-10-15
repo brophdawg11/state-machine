@@ -1,32 +1,31 @@
-// Type definitions for state machine 0.2.2
-// Project: https://github.com/brophdawg11/state-machine#readme
 // TypeScript Version: 3.7.4
 
 export default StateMachine
 
 declare class StateMachine {
     constructor(machine: MachineDefinition, initialState?: string);
-    currentState(): string;
+    currentState: string;
     getDotFile(): string;
-    transition(transition: string, data?:any):Promise<null>
+    transition(transition: string, data?:any):Promise<any>
 }
 
 export type MachineDefinition = {
     states: StateCollection,
-    onEnter?: OnStateEnter
+    onEnter?: OnMachineEnter
 }
 
-type OnStateEnter = (payload: any, newState: string, oldState: string) => void;
+type OnMachineEnter = (payload: any, newState: string, oldState: string, transition: string) => null;
+type OnStateEnter = (payload: any, newState: string, oldState: string, transition: string) => any | Promise<any>;
 
 type StateCollection = {
     [name: string]: StateDefinition
 };
 
-type StateDefinition = {
+export type StateDefinition = {
     transitions: Transition,
     onEnter?: OnStateEnter
 };
 
 type Transition = {
-    [name: string]: string[]
+    [name: string]: string
 }
