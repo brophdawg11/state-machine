@@ -118,7 +118,7 @@ function getValidated(obj, path, validator, defaultVal) {
  *             transitions: {
  *                 transitionName: 'destinationStateName',
  *             },
- *             onEnter(payload, newState, oldState) {
+ *             onEnter(payload, newState, oldState, transition) {
  *                 // Called whenever this state is entered.  Usually used to launch
  *                 // any side-effects and eventually transition to subsequent states.
  *                 // The payload is the data, if any, that was passed to
@@ -127,7 +127,7 @@ function getValidated(obj, path, validator, defaultVal) {
  *         },
  *         ...
  *     },
- *     onEnter(payload, newState, oldState) {
+ *     onEnter(payload, newState, oldState, transition) {
  *         // Global onEnter function called every time we enter a new
  *         // state.  This is useful for propagating that information back
  *         // to Vue's reactive properties.  The payload is the data, if any,
@@ -149,7 +149,7 @@ function getValidated(obj, path, validator, defaultVal) {
  *             transitions: { change: 'green' },
  *         },
  *     },
- *     onEnter(data, newState, oldState) {
+ *     onEnter(data, newState, oldState, transition) {
  *         console.log(`Transitioned from ${oldState} -> ${newState}`);
  *     },
  * }, 'red');
