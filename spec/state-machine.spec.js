@@ -195,7 +195,7 @@ describe('StateMachine', () => {
                         started: 'on',
                     },
                     onEnter() {
-                        return new Promise(resolve => setTimeout(() => {
+                        return new Promise((resolve) => setTimeout(() => {
                             machine.transition('started');
                             resolve('done starting');
                         }, 1000));
