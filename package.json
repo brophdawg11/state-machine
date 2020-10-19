@@ -1,6 +1,6 @@
 {
   "name": "@urbn/state-machine",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "A small Javascript Promise-based Finite State Machine implementation",
   "author": "mbrophy@urbn.com",
   "license": "MIT",
