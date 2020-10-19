@@ -40,6 +40,6 @@
     "eslint-plugin-import": "2.18.0",
     "eslint-plugin-jest": "22.7.2",
     "husky": "4.3.0",
-    "jest": "24.8.0"
+    "jest": "26.6.0"
   }
 }
