@@ -337,7 +337,7 @@ digraph "fsm" {
      */
     transition(transition, data) {
         const state = this._machine.states[this.currentState];
-        if (!has(state.transitions, transition)) {
+        if (!this.isValidTransition(transition)) {
             const msg =
                 `Invalid transition (${transition}) from current state` +
                 `(${this.currentState})`;
@@ -346,5 +346,18 @@ digraph "fsm" {
         }
         StateMachine._debug(`Executing transition: ${transition}`);
         return this._setState(state.transitions[transition], transition, data);
+    }
+
+    /**
+     * @description
+     * Is the specified transition valid from the current state?
+     *
+     * @param   {String}  transition Transition name
+     * @returns {Boolean}            True if the transition is defined for the
+     *                               current state, false otherwise
+     */
+    isValidTransition(transition) {
+        const state = this._machine.states[this.currentState];
+        return has(state.transitions, transition);
     }
 };

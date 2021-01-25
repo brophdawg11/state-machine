@@ -251,6 +251,12 @@ digraph "fsm" {
         expect(testFn).toThrow();
     });
 
+    it('should know if a transition is valid', () => {
+        const machine = new StateMachine(machineConfig, 'off');
+        expect(machine.isValidTransition('turnOn')).toBe(true);
+        expect(machine.isValidTransition('turnOff')).toBe(false);
+    });
+
     it('should no-op on invalid state transition', () => {
         const machine = new StateMachine(machineConfig, 'off');
         expect(machine.currentState).toBe('off');
