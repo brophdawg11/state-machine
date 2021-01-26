@@ -331,7 +331,7 @@ digraph "fsm" {
      *   * Otherwise, the promise returned from onEnter will be returned
      *
      * @param   {String}    transition Transition name
-     * @param   {*}         [data]      Optional payload to pas to `onEnter` functions
+     * @param   {*}         [data]      Optional payload to pass to `onEnter` functions
      * @returns {Promise}   Promise resolved upon successful transition, rejected on
      *                      invalid transitions
      */
