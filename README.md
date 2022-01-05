@@ -1,13 +1,18 @@
 # state-machine
 
-* [Description](#description)
-* [Usage](#usage)
-* [Why use a State Machine?](#why-use-a-state-machine)
-* [Prior Art](#prior-art)
-* [Other Libraries](#other-libraries)
-* [Diagrams](#diagrams)
-* [API Documentation](#api-documentation)
-* [Packaged Module Format](#packaged-module-format)
+<!-- MarkdownTOC autolink="true" levels="1,2" -->
+
+- [Description](#description)
+- [Usage](#usage)
+- [Why use a State Machine?](#why-use-a-state-machine)
+- [Prior Art](#prior-art)
+- [Other Libraries](#other-libraries)
+- [Diagrams](#diagrams)
+- [API Documentation](#api-documentation)
+- [Packaged Module Format](#packaged-module-format)
+
+<!-- /MarkdownTOC -->
+
 
 ## Description
 
@@ -93,12 +98,12 @@ To generate your `state-machine` diagrams, simply call the `.getDotFile()` metho
 
 ## API Documentation
 
-### Constructor 
+### Constructor
 
 The constructor requires both the machine configuration and the initial state for the machine, and will throw an error if either are invalid.
 
 ```
-const machine = new StateMachine(configuration, initialState);
+const machine = new StateMachine(configuration, initialState, initialStateErrorHandler?);
 ```
 
 The full structure of the configuration object is as follows:
@@ -128,6 +133,11 @@ The full structure of the configuration object is as follows:
 #### Asyncronous `onEnter` functions
 
 `onEnter` functions can return promises if they need to handle asynchronous actions, and these promises will be proxied back as the return value for the `.transition()` call that entered the state.  See the `.transition` documentation below for examples.
+
+
+#### `initialStateErrorHandler`
+
+Because of the async nature of state `onEnter` functions, `initialStateErrorHandler` can be passed to handle promise rejections from the `initialState`'s `onEnter` function that will be executed on the initial transition.
 
 ### currentState
 
