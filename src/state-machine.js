@@ -161,17 +161,22 @@ module.exports = class StateMachine {
      * @description
      * None - the docs display the description from the class JSDoc block :)
      *
-     * @param   {Object} machine      Machine definition
-     * @param   {String} initialState Initial state for the state machine
-     * @returns {StateMachine}        Initialized StateMachine instance
-     * @throws  {Error}               If no states exist, or transitions to
-     *                                invalid states are found
+     * @param   {Object} machine                      Machine definition
+     * @param   {String} initialState                 Initial state for the state machine
+     * @param   {Function} initialStateErrorHandler   Process initialState's onEnter errors
+     * @returns {StateMachine}                        Initialized StateMachine instance
+     * @throws  {Error}                               If no states exist, or transitions to
+     *                                                invalid states are found
      */
-    constructor(machine, initialState) {
+    constructor(machine, initialState, initialStateErrorHandler) {
         this._machine = machine;
         this._currentState = null;
         StateMachine._validateMachine(machine, initialState);
-        this._setState(initialState);
+        this._setState(initialState).catch((err) => {
+            if (isFunction(initialStateErrorHandler)) {
+                initialStateErrorHandler(err);
+            }
+        });
     }
 
     /**
