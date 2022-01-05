@@ -1,0 +1,34 @@
+name: PR Checks
+
+on:
+  pull_request:
+
+jobs:
+  lint:
+    name: "Lint"
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
+      - name: set node version
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.15.4"
+          cache: 'npm'
+      - name: npm ci
+        run: npm ci
+      - run: npm run lint
+  test:
+    name: "Test"
+    runs-on: ubuntu-latest
+    steps:
+      - name: git checkout
+        uses: actions/checkout@v2
+      - name: set node version
+        uses: actions/setup-node@v2
+        with:
+          node-version: "14.15.4"
+          cache: 'npm'
+      - name: npm ci
+        run: npm ci
+      - run: npm run test
