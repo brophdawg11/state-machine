@@ -182,6 +182,64 @@ describe('StateMachine', () => {
         /* eslint-enable no-param-reassign */
     });
 
+    it('should allow initial state onEnter to return promises', async () => {
+        /* eslint-disable no-param-reassign */
+
+        const initialError = new Error('initial state failure');
+        const localMachineConfig = {
+            states: {
+                initial: {
+                    transitions: {
+                        start: 'off',
+                    },
+                    onEnter: () => Promise.reject(initialError),
+                },
+                off: {
+                    transitions: {
+                        turnOn: 'on',
+                    },
+                    onEnter: (data) => {
+                        if (data) { data.count++; }
+                        // Ensure rejected onEnter functions are passed back as well
+                        return Promise.reject(data);
+                    },
+                },
+                on: {
+                    transitions: {
+                        turnOff: 'off',
+                    },
+                    onEnter: (data) => {
+                        if (data) { data.count++; }
+                        return Promise.resolve(data);
+                    },
+                },
+            },
+        };
+
+        const errHandler = jest.fn();
+        const machine = new StateMachine(localMachineConfig, 'initial', errHandler);
+        const payload = { count: 0 };
+
+        try {
+            await machine.transition('start', payload);
+            expect(true).toBe(false);
+        } catch (offValue) {
+            expect(errHandler).toHaveBeenCalledWith(initialError);
+            expect(offValue.count).toBe(1);
+        }
+
+        const onValue = await machine.transition('turnOn', payload);
+        expect(onValue.count).toBe(2);
+
+        try {
+            await machine.transition('turnOff', payload);
+            expect(true).toBe(false);
+        } catch (offValue) {
+            expect(offValue.count).toBe(3);
+        }
+        /* eslint-enable no-param-reassign */
+    });
+
     it('should proxy proper async return values from onEnter', async () => {
         const machine = new StateMachine({
             states: {
