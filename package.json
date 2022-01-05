@@ -31,9 +31,9 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "publish": "npm run validate",
-    "test": "jest --testEnvironment node --collectCoverage false && jest",
-    "validate": "npm run lint && npm run test"
+    "prepare": "husky install",
+    "publish": "npm run lint && npm run test",
+    "test": "jest --testEnvironment jsdom --collectCoverage false && jest --testEnvironment node"
   },
   "devDependencies": {
     "eslint": "8.6.0",
