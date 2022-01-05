@@ -31,16 +31,16 @@
   ],
   "scripts": {
     "lint": "eslint .",
-    "publish": "npm run validate",
-    "test": "jest --testEnvironment node --collectCoverage false && jest",
-    "validate": "npm run lint && npm run test"
+    "prepare": "husky install",
+    "publish": "npm run lint && npm run test",
+    "test": "jest --testEnvironment jsdom --collectCoverage false && jest --testEnvironment node"
   },
   "devDependencies": {
-    "eslint": "7.11.0",
-    "eslint-config-airbnb-base": "14.2.0",
-    "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-jest": "24.1.0",
-    "husky": "4.3.0",
-    "jest": "26.6.0"
+    "eslint": "8.6.0",
+    "eslint-config-airbnb-base": "15.0.0",
+    "eslint-plugin-import": "2.25.4",
+    "eslint-plugin-jest": "25.3.4",
+    "husky": "7.0.4",
+    "jest": "27.4.7"
   }
 }
