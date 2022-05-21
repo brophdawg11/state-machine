@@ -33,7 +33,7 @@ npm install --save @urbn/state-machine
 
 Use the library in your application:
 
-```
+```js
 const stopLight = new StateMachine({
     states: {
         green: {
@@ -102,13 +102,13 @@ To generate your `state-machine` diagrams, simply call the `.getDotFile()` metho
 
 The constructor requires both the machine configuration and the initial state for the machine, and will throw an error if either are invalid.
 
-```
+```js
 const machine = new StateMachine(configuration, initialState, initialStateErrorHandler?);
 ```
 
 The full structure of the configuration object is as follows:
 
-```
+```js
 {
     // The `states` field is an object with keys for every possible state
     states: {
@@ -143,7 +143,7 @@ Because of the async nature of state `onEnter` functions, `initialStateErrorHand
 
 Returns the current machine state name
 
-```
+```js
 const machine = new StateMachine({ 
     states: { 
         purgatory: null,
@@ -159,7 +159,7 @@ console.log(machine.currentState);
 
 In development mode only (`NODE_ENV !== 'production')`, returns a string of the machine diagram as a DOT file.  See the [Diagrams](#diagrams) section for more information.  
 
-```
+```js
 const machine = new StateMachine({
     states: {
         off: {
@@ -191,7 +191,7 @@ Transitions the machine from a current state to a new state, returning a resolve
 
 #### Synchronous Transitions
 
-```
+```js
 const machine = new StateMachine({
     states: {
         off: {
@@ -225,7 +225,7 @@ console.log(machine.currentState);
 
 Asyncronous `onEnter` functions can be used along with promise-based transitions as follows:
 
-```
+```js
 const machine = new StateMachine({
     states: {
         empty: {
